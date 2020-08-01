@@ -1,14 +1,252 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "name": "Ola Rice",
+      "email": "Ola83@yahoo.com",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/karlkanall/128.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Lonny Durgan",
+      "email": "Lonny75@hotmail.com",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/brandonflatsoda/128.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Clare Lesch",
+      "email": "Clare.Lesch61@gmail.com",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/robbschiller/128.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Eliane Senger",
+      "email": "Eliane85@yahoo.com",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/umurgdk/128.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Ms. Rahsaan Zieme",
+      "email": "Rahsaan.Zieme@yahoo.com",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/chacky14/128.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Sylvan Zboncak",
+      "email": "Sylvan_Zboncak96@hotmail.com",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/garand/128.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Jerel Terry",
+      "email": "Jerel67@gmail.com",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/renbyrd/128.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Cameron Kuhn",
+      "email": "Cameron41@gmail.com",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/stan/128.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Cary Marvin",
+      "email": "Cary.Marvin@yahoo.com",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/kianoshp/128.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Abby Wilderman",
+      "email": "Abby_Wilderman95@hotmail.com",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/devankoshal/128.jpg"
+    }
+  ],
   "posts": [
-    { "id": 1, "title": "Post 1" },
-    { "id": 2, "title": "Post 2" },
-    { "id": 3, "title": "Post 3" }
+    { "id": 1, "body": "I'll generate the 1080p COM array, that should transmitter the SAS bus!", "userId": 5 },
+    { "id": 2, "body": "Use the wireless XML pixel, then you can bypass the 1080p program!", "userId": 1 },
+    { "id": 3, "body": "You can't parse the bus without bypassing the open-source AI hard drive!", "userId": 8 },
+    { "id": 4, "body": "I'll compress the optical USB system, that should application the PNG firewall!", "userId": 5 },
+    { "id": 5, "body": "Use the multi-byte EXE feed, then you can index the neural matrix!", "userId": 7 },
+    { "id": 6, "body": "We need to copy the mobile SAS array!", "userId": 6 },
+    { "id": 7, "body": "You can't input the pixel without navigating the digital GB protocol!", "userId": 2 },
+    { "id": 8, "body": "You can't input the bandwidth without parsing the virtual PNG driver!", "userId": 3 },
+    {
+      "id": 9,
+      "body": "If we connect the firewall, we can get to the CSS sensor through the mobile IB transmitter!",
+      "userId": 2
+    },
+    {
+      "id": 10,
+      "body": "bypassing the interface won't do anything, we need to index the open-source SAS alarm!",
+      "userId": 7
+    },
+    {
+      "id": 11,
+      "body": "You can't connect the application without transmitting the cross-platform COM protocol!",
+      "userId": 3
+    },
+    { "id": 12, "body": "Use the neural SQL feed, then you can back up the bluetooth card!", "userId": 8 },
+    {
+      "id": 13,
+      "body": "The THX array is down, program the multi-byte monitor so we can calculate the HDD feed!",
+      "userId": 2
+    },
+    { "id": 14, "body": "You can't parse the panel without hacking the multi-byte CSS matrix!", "userId": 3 },
+    {
+      "id": 15,
+      "body": "The CSS application is down, navigate the 1080p bandwidth so we can override the PNG array!",
+      "userId": 6
+    },
+    {
+      "id": 16,
+      "body": "synthesizing the feed won't do anything, we need to back up the neural AGP protocol!",
+      "userId": 3
+    },
+    { "id": 17, "body": "You can't index the protocol without calculating the redundant PNG bandwidth!", "userId": 5 },
+    { "id": 18, "body": "You can't copy the system without indexing the back-end AI driver!", "userId": 10 },
+    { "id": 19, "body": "I'll copy the 1080p XSS protocol, that should feed the JBOD hard drive!", "userId": 5 },
+    { "id": 20, "body": "I'll copy the back-end ADP matrix, that should interface the JSON sensor!", "userId": 5 }
   ],
   "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 },
-    { "id": 2, "body": "some comment", "postId": 1 }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+    { "id": 1, "body": "bluetooth", "postId": 1, "userId": 17 },
+    { "id": 2, "body": "parsing", "postId": 2, "userId": 1 },
+    {
+      "id": 3,
+      "body": "overriding the microchip won't do anything, we need to bypass the haptic SCSI card!",
+      "postId": 10,
+      "userId": 1
+    },
+    {
+      "id": 4,
+      "body": "overriding the sensor won't do anything, we need to override the redundant USB matrix!",
+      "postId": 5,
+      "userId": 17
+    },
+    { "id": 5, "body": "bluetooth", "postId": 7, "userId": 19 },
+    {
+      "id": 6,
+      "body": "Use the solid state JSON sensor, then you can parse the solid state application!",
+      "postId": 4,
+      "userId": 19
+    },
+    {
+      "id": 7,
+      "body": "I'll quantify the neural ADP pixel, that should capacitor the GB panel!",
+      "postId": 6,
+      "userId": 9
+    },
+    {
+      "id": 8,
+      "body": "Try to override the EXE bus, maybe it will reboot the digital sensor!",
+      "postId": 5,
+      "userId": 6
+    },
+    { "id": 9, "body": "parsing", "postId": 3, "userId": 9 },
+    {
+      "id": 10,
+      "body": "I'll parse the virtual AGP hard drive, that should transmitter the SMTP monitor!",
+      "postId": 9,
+      "userId": 7
+    },
+    { "id": 11, "body": "back-end", "postId": 2, "userId": 19 },
+    { "id": 12, "body": "Use the digital SAS matrix, then you can hack the neural driver!", "postId": 6, "userId": 14 },
+    { "id": 13, "body": "wireless", "postId": 10, "userId": 9 },
+    { "id": 14, "body": "multi-byte", "postId": 10, "userId": 2 },
+    {
+      "id": 15,
+      "body": "backing up the application won't do anything, we need to generate the auxiliary XSS hard drive!",
+      "postId": 5,
+      "userId": 18
+    },
+    { "id": 16, "body": "haptic", "postId": 7, "userId": 6 },
+    { "id": 17, "body": "bluetooth", "postId": 8, "userId": 11 },
+    { "id": 18, "body": "We need to bypass the 1080p TCP system!", "postId": 1, "userId": 4 },
+    { "id": 19, "body": "redundant", "postId": 5, "userId": 13 },
+    { "id": 20, "body": "backing up", "postId": 5, "userId": 9 },
+    {
+      "id": 21,
+      "body": "I'll quantify the cross-platform SQL monitor, that should pixel the PNG card!",
+      "postId": 1,
+      "userId": 11
+    },
+    { "id": 22, "body": "haptic", "postId": 9, "userId": 1 },
+    {
+      "id": 23,
+      "body": "I'll navigate the primary COM interface, that should sensor the AI capacitor!",
+      "postId": 6,
+      "userId": 9
+    },
+    { "id": 24, "body": "wireless", "postId": 7, "userId": 20 },
+    { "id": 25, "body": "connecting", "postId": 8, "userId": 12 },
+    {
+      "id": 26,
+      "body": "I'll bypass the back-end RSS sensor, that should sensor the TCP port!",
+      "postId": 8,
+      "userId": 7
+    },
+    { "id": 27, "body": "compressing", "postId": 1, "userId": 14 },
+    { "id": 28, "body": "back-end", "postId": 3, "userId": 9 },
+    { "id": 29, "body": "compressing", "postId": 10, "userId": 2 },
+    { "id": 30, "body": "solid state", "postId": 2, "userId": 6 },
+    { "id": 31, "body": "haptic", "postId": 7, "userId": 19 },
+    {
+      "id": 32,
+      "body": "I'll navigate the solid state SDD microchip, that should bandwidth the SQL protocol!",
+      "postId": 9,
+      "userId": 10
+    },
+    {
+      "id": 33,
+      "body": "Try to copy the RSS system, maybe it will back up the haptic system!",
+      "postId": 10,
+      "userId": 16
+    },
+    { "id": 34, "body": "transmitting", "postId": 10, "userId": 18 },
+    { "id": 35, "body": "navigating", "postId": 4, "userId": 2 },
+    { "id": 36, "body": "parsing", "postId": 8, "userId": 14 },
+    {
+      "id": 37,
+      "body": "navigating the monitor won't do anything, we need to bypass the optical GB pixel!",
+      "postId": 6,
+      "userId": 12
+    },
+    { "id": 38, "body": "We need to hack the online IB alarm!", "postId": 2, "userId": 13 },
+    { "id": 39, "body": "backing up", "postId": 8, "userId": 9 },
+    {
+      "id": 40,
+      "body": "If we program the alarm, we can get to the SAS feed through the open-source RSS system!",
+      "postId": 2,
+      "userId": 5
+    },
+    { "id": 41, "body": "digital", "postId": 1, "userId": 19 },
+    {
+      "id": 42,
+      "body": "The COM bus is down, input the online bus so we can bypass the FTP application!",
+      "postId": 3,
+      "userId": 7
+    },
+    { "id": 43, "body": "1080p", "postId": 9, "userId": 12 },
+    { "id": 44, "body": "wireless", "postId": 10, "userId": 12 },
+    {
+      "id": 45,
+      "body": "The FTP protocol is down, navigate the 1080p bus so we can program the PCI program!",
+      "postId": 7,
+      "userId": 15
+    },
+    {
+      "id": 46,
+      "body": "Try to parse the THX system, maybe it will bypass the back-end card!",
+      "postId": 2,
+      "userId": 12
+    },
+    { "id": 47, "body": "backing up", "postId": 4, "userId": 7 },
+    {
+      "id": 48,
+      "body": "Use the solid state COM card, then you can input the optical port!",
+      "postId": 8,
+      "userId": 16
+    },
+    { "id": 49, "body": "calculating", "postId": 4, "userId": 10 },
+    { "id": 50, "body": "compressing", "postId": 8, "userId": 10 }
+  ]
 }
