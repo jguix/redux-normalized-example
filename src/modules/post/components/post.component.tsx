@@ -32,16 +32,13 @@ export const RnPost: FC<Props> = ({ post }) => {
 
   return post ? (
     <>
-      <h2>{post.title}</h2>
-      <div>{post.body}</div>
+      <div>*&nbsp;{post.body}</div>
 
       {isLoading
         ? 'Loading comments...'
         : comments?.map((comment) => (
             <div key={comment.id}>
-              <div>
-                {' - '}[{comment.name}] {comment.body}
-              </div>
+              <div>&nbsp;-&nbsp;{comment.body}</div>
             </div>
           ))}
     </>

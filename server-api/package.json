@@ -1,0 +1,14 @@
+{
+  "name": "redux-normalized-example-server-api",
+  "version": "1.0.0",
+  "description": "Social network Rest API for the redux normalized example",
+  "main": "index.js",
+  "scripts": {
+    "start": "json-server --watch db.json --port 3001"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "json-server": "^0.16.1"
+  }
+}

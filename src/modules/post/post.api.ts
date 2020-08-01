@@ -1,15 +1,11 @@
 import { Post } from './post.types';
 
 const loadPosts = (): Promise<Post[]> => {
-  return fetch(`https://jsonplaceholder.typicode.com/posts`)
-    .then((response) => response.json())
-    .then((posts) => posts);
+  return fetch(`http://localhost:3001/posts`).then((response) => response.json());
 };
 
 const loadUserPosts = (userId: number): Promise<Post[]> => {
-  return fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
-    .then((response) => response.json())
-    .then((posts) => posts);
+  return fetch(`http://localhost:3001/posts?userId=${userId}`).then((response) => response.json());
 };
 
 export const postApi = { loadPosts, loadUserPosts };
