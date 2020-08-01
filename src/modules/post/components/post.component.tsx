@@ -4,6 +4,7 @@ import { Post } from '../post.types';
 import { Comment } from '../../comment/comment.types';
 import { ApplicationStore } from '../../../store/store';
 import { commentCommands } from '../../comment/comment.commands';
+import { RnComment } from '../../comment/components/comment.conponent';
 
 type Props = {
   post: Post;
@@ -34,13 +35,7 @@ export const RnPost: FC<Props> = ({ post }) => {
     <>
       <div>*&nbsp;{post.body}</div>
 
-      {isLoading
-        ? 'Loading comments...'
-        : comments?.map((comment) => (
-            <div key={comment.id}>
-              <div>&nbsp;-&nbsp;{comment.body}</div>
-            </div>
-          ))}
+      {isLoading ? 'Loading comments...' : comments?.map((comment) => <RnComment key={comment.id} comment={comment} />)}
     </>
   ) : (
     <></>
