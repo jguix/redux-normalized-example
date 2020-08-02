@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { User } from '../user.types';
 import { ApplicationStore } from '../../../store/store';
 import { userCommands } from '../user.commands';
+import { Link } from 'react-router-dom';
 
 export const RnFriends: FC = () => {
   const users = useSelector<ApplicationStore, User[]>((state) => {
@@ -31,7 +32,9 @@ export const RnFriends: FC = () => {
     <>
       <h1>My Friends</h1>
       {users.map((user) => (
-        <div key={user.id}>{user.name}</div>
+        <Link key={user.id} to={`/friend/${user.id}`}>
+          <div>{user.name}</div>
+        </Link>
       ))}
     </>
   ) : (

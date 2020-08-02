@@ -45,8 +45,8 @@ export const RnFriend: FC = () => {
 
   return user ? (
     <>
-      <h1>{isLoadingUser ? 'Loading friend...' : user.name}</h1>
-      {isLoadingPosts ? 'Loading posts...' : posts.map((post) => <RnPost key={post.id} post={post} />)}
+      <h1>{isLoadingUser ? 'Loading friend...' : user?.name}</h1>
+      {isLoadingPosts ? 'Loading posts...' : posts?.map((post) => <RnPost key={post.id} post={post} />)}
     </>
   ) : (
     <></>

@@ -1,11 +1,12 @@
-import { Comment } from "./comment.types";
+import { Comment } from './comment.types';
 
 export enum CommentActionTypes {
-  LOAD_COMMENTS = "LOAD_COMMENTS",
+  LOAD_COMMENTS = 'LOAD_COMMENTS',
 }
 
 export type LoadCommentsPayload = {
   comments: Comment[];
+  postId?: number;
 };
 
 export type LoadCommentsAction = {
@@ -13,9 +14,7 @@ export type LoadCommentsAction = {
   payload: LoadCommentsPayload;
 };
 
-const loadCommentsAction = (
-  payload: LoadCommentsPayload
-): LoadCommentsAction => {
+const loadCommentsAction = (payload: LoadCommentsPayload): LoadCommentsAction => {
   return {
     payload,
     type: CommentActionTypes.LOAD_COMMENTS,

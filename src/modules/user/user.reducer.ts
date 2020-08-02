@@ -42,14 +42,17 @@ export const postIdsByIdReducer = (state: NumberIndexed<number[]> = {}, action: 
   switch (action.type) {
     case PostActionTypes.LOAD_POSTS:
       const { payload } = action as LoadPostsAction;
-      const { posts } = payload;
-      const loadedPostIdsbyUserIdMap = posts.reduce(
+      const { posts, userId } = payload;
+      let loadedPostIdsbyUserIdMap = posts.reduce(
         (postIdsbyUserIdMap, post) => ({
           ...postIdsbyUserIdMap,
           [post.userId]: postIdsbyUserIdMap[post.userId] ? [...postIdsbyUserIdMap[post.userId], post.id] : [post.id],
         }),
         {} as NumberIndexed<number[]>
       );
+      if (Object.keys(loadedPostIdsbyUserIdMap).length === 0) {
+        loadedPostIdsbyUserIdMap = { [userId as number]: [] };
+      }
 
       return {
         ...state,
