@@ -4,7 +4,7 @@ import { Post } from '../post.types';
 import { Comment } from '../../comment/comment.types';
 import { ApplicationStore } from '../../../store/store';
 import { commentCommands } from '../../comment/comment.commands';
-import { RnComment } from '../../comment/components/comment.conponent';
+import { RnComment } from '../../comment/components/comment.component';
 
 type Props = {
   post: Post;

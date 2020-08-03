@@ -2,12 +2,12 @@ import { postApi } from './post.api';
 import { store } from '../../store/store';
 import { postActions } from './post.actions';
 
-const loadPosts = (invalidateCache: boolean = false): Promise<void> => {
+const loadPosts = (page: number = 1, limit: number = 5, invalidateCache: boolean = false): Promise<void> => {
   return new Promise((resolve, reject) => {
-    if (!invalidateCache && isDataCached()) {
+    if (!invalidateCache && isDataCached(page, limit)) {
       resolve();
     } else {
-      postApi.loadPosts().then(
+      postApi.loadPosts(page, limit).then(
         (posts) => {
           store.dispatch(
             postActions.loadPostsAction({
@@ -49,8 +49,8 @@ const loadUserPosts = (userId: number, invalidateCache: boolean = false): Promis
   });
 };
 
-const isDataCached = (): boolean => {
-  return Object.keys(store.getState().entities.posts.byId).length > 0;
+const isDataCached = (page: number, limit: number): boolean => {
+  return Object.keys(store.getState().entities.posts.byId).length >= page * limit;
 };
 
 const arePostsCached = (userId: number): boolean => {

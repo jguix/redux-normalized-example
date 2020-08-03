@@ -1,5 +1,4 @@
 import { Post } from './post.types';
-import { User } from '../user/user.types';
 
 export enum PostActionTypes {
   LOAD_POSTS = 'LOAD_POSTS',

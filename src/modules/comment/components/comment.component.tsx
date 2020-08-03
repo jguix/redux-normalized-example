@@ -1,8 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Comment } from '../../comment/comment.types';
+import { Comment } from '../comment.types';
 import { ApplicationStore } from '../../../store/store';
-import { commentCommands } from '../../comment/comment.commands';
 import { User } from '../../user/user.types';
 import { userCommands } from '../../user/user.commands';
 
