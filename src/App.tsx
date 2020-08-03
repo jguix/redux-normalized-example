@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { RnFriends } from './modules/user/components/friends.component';
+import { RnFriends } from './modules/friends/components/friends.component';
 import { Route, Link } from 'react-router-dom';
 import { RnFriend } from './modules/user/components/friend.component';
 import { RnWall } from './modules/wall/components/wall.component';
