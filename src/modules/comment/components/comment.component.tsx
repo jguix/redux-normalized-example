@@ -43,7 +43,7 @@ export const RnComment: FC<Props> = ({ comment }) => {
           </span>
         )}
         <span>&nbsp;</span>
-        <span>{comment?.date?.toLocaleString()}</span>
+        <span>[{comment?.date?.toLocaleString()}]</span>
       </div>
     </>
   ) : (

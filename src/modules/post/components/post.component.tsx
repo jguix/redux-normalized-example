@@ -33,7 +33,12 @@ export const RnPost: FC<Props> = ({ post }) => {
 
   return post ? (
     <>
-      <div>*&nbsp;{post.body}</div>
+      <div>
+        <span>*&nbsp;</span>
+        <span>{post.body}</span>
+        <span>&nbsp;</span>
+        <span>[{post?.date?.toLocaleString()}]</span>
+      </div>
 
       {isLoading ? 'Loading comments...' : comments?.map((comment) => <RnComment key={comment.id} comment={comment} />)}
       <br />
