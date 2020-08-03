@@ -13,14 +13,19 @@ export const RnFriends: FC = () => {
     return state.ui.friends.orderFilter;
   });
   const friends = useSelector<ApplicationStore, User[]>((state) => {
-    const userIds =
-      state.ui.friends.orderFilter === 'asc' ? state.ui.friends.userIdsByOrderAsc : state.ui.friends.userIdsByOrderDesc;
+    const userIds = order === 'asc' ? state.ui.friends.userIdsByOrderAsc : state.ui.friends.userIdsByOrderDesc;
     return userIds?.map((userId) => state.entities.users.byId[userId]);
   });
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
-  const [page, setPage] = useState(Math.ceil(friends?.length / LIMIT) || 1);
-  console.log(`Initial page ${page}`);
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    const computedPage = Math.ceil(friends?.length / LIMIT) || 1;
+    if (computedPage !== page) {
+      setPage(computedPage);
+    }
+  }, [friends, order, page]);
 
   useEffect(() => {
     setLoading(true);
@@ -31,6 +36,7 @@ export const RnFriends: FC = () => {
   }, [order, page]);
 
   const onOrderChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setPage(1);
     friendsCommands.setOrder(event.target.value as OrderType);
   };
 
