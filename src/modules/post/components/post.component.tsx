@@ -36,6 +36,7 @@ export const RnPost: FC<Props> = ({ post }) => {
       <div>*&nbsp;{post.body}</div>
 
       {isLoading ? 'Loading comments...' : comments?.map((comment) => <RnComment key={comment.id} comment={comment} />)}
+      <br />
     </>
   ) : (
     <></>

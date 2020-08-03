@@ -4,6 +4,7 @@ import { Comment } from '../comment.types';
 import { ApplicationStore } from '../../../store/store';
 import { User } from '../../user/user.types';
 import { userCommands } from '../../user/user.commands';
+import { Link } from 'react-router-dom';
 
 type Props = {
   comment: Comment;
@@ -32,8 +33,18 @@ export const RnComment: FC<Props> = ({ comment }) => {
   return comment ? (
     <>
       <div>&nbsp;-&nbsp;{comment.body}</div>
-
-      {isLoading ? 'Loading user...' : <div>&nbsp;&nbsp;&nbsp;[{user?.name}]</div>}
+      <div>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        {isLoading ? (
+          'Loading user...'
+        ) : (
+          <span>
+            <Link to={`/friend/${user?.id}`}>{user?.name}</Link>
+          </span>
+        )}
+        <span>&nbsp;</span>
+        <span>{comment?.date?.toLocaleString()}</span>
+      </div>
     </>
   ) : (
     <></>

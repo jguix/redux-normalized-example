@@ -34,6 +34,7 @@ export const RnWall: FC = () => {
       {posts?.length > 0 && (
         <div>
           <button onClick={incrementPage}>Load next 5</button>
+          <hr />
         </div>
       )}
       {posts?.map((post) => (
@@ -42,6 +43,7 @@ export const RnWall: FC = () => {
       {isLoading && <div>Loading posts...</div>}
       {posts?.length > 0 && (
         <div>
+          <hr />
           <button onClick={incrementPage}>Load next 5</button>
         </div>
       )}
