@@ -1,7 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { ApplicationStore } from '../../../store/store';
-import { postCommands } from '../../post/post.commands';
 import { Post } from '../../post/post.types';
 import { RnPost } from '../../post/components/post.component';
 import { wallCommands } from '../wall.commands';
