@@ -25,12 +25,17 @@ const loadPosts = (page: number = 1, limit: number = 5, invalidateCache: boolean
   });
 };
 
-const loadUserPosts = (userId: number, invalidateCache: boolean = false): Promise<void> => {
+const loadUserPosts = (
+  userId: number,
+  page: number = 1,
+  limit: number = 5,
+  invalidateCache: boolean = false
+): Promise<void> => {
   return new Promise((resolve, reject) => {
     if (!invalidateCache && arePostsCached(userId)) {
       resolve();
     } else {
-      postApi.loadUserPosts(userId).then(
+      postApi.loadUserPosts(userId, page, limit).then(
         (posts) => {
           store.dispatch(
             postActions.loadPostsAction({

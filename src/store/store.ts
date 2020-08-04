@@ -4,10 +4,12 @@ import { commentReducer, CommentStore } from '../modules/comment/comment.reducer
 import { postReducer, PostStore } from '../modules/post/post.reducer';
 import { createStore } from 'redux';
 import { friendsReducer, FriendsStore } from '../modules/friends/friends.reducer';
+import { FriendWallStore, friendWallReducer } from '../modules/friend-wall/friend-wall.reducer';
+import { wallReducer, WallStore } from '../modules/wall/wall.reducer';
 
 export type EntitiesStore = CommentStore & PostStore & UserStore;
 
-export type UIStore = FriendsStore;
+export type UIStore = FriendsStore & FriendWallStore & WallStore;
 
 export type ApplicationStore = {
   entities: EntitiesStore;
@@ -22,6 +24,8 @@ export const entitiesReducer = combineReducers({
 
 export const uiReducer = combineReducers({
   friends: friendsReducer,
+  friendWall: friendWallReducer,
+  wall: wallReducer,
 });
 
 export const rootReducer: Reducer<ApplicationStore> = combineReducers({

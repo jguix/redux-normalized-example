@@ -4,10 +4,14 @@ import { ApplicationStore } from '../../../store/store';
 import { postCommands } from '../../post/post.commands';
 import { Post } from '../../post/post.types';
 import { RnPost } from '../../post/components/post.component';
+import { wallCommands } from '../wall.commands';
+
+const LIMIT = 5;
 
 export const RnWall: FC = () => {
   const posts = useSelector<ApplicationStore, Post[]>((state) => {
-    return Object.values(state.entities.posts.byId);
+    const postIds = state.ui.wall.postIds;
+    return postIds?.map((postId) => state.entities.posts.byId[postId]);
   });
 
   const [isLoading, setLoading] = useState(false);
@@ -15,8 +19,15 @@ export const RnWall: FC = () => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
+    const computedPage = Math.ceil(posts?.length / LIMIT) || 1;
+    if (page === 1 && computedPage !== page) {
+      setPage(computedPage);
+    }
+  }, [posts, page]);
+
+  useEffect(() => {
     setLoading(true);
-    postCommands.loadPosts(page).then(
+    wallCommands.loadPosts(page, LIMIT).then(
       () => setLoading(false),
       () => setError(true)
     );
