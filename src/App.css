@@ -1,13 +1,3 @@
 .App {
   padding: 20px;
 }
-
-.buttonLink {
-  background: none !important;
-  border: none;
-  padding: 0 !important;
-  font-family: arial, sans-serif;
-  color: #069;
-  text-decoration: underline;
-  cursor: pointer;
-}
