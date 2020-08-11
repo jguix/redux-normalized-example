@@ -74,7 +74,14 @@ const App = () => {
     })
   );
 
-  return <div className="App">Please open the developer tools console to see the results</div>;
+  return (
+    <div className="App">
+      <div>Store contents</div>
+      <div>
+        <pre>{JSON.stringify(store.getState(), null, 2)}</pre>
+      </div>
+    </div>
+  );
 };
 
 export default App;
