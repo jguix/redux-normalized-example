@@ -32,9 +32,8 @@ export const RnComment: FC<Props> = ({ comment }) => {
 
   return comment ? (
     <>
-      <div>&nbsp;-&nbsp;{comment.body}</div>
       <div>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span>&nbsp;-&nbsp;</span>
         {isLoading ? (
           'Loading user...'
         ) : (
@@ -42,6 +41,7 @@ export const RnComment: FC<Props> = ({ comment }) => {
             <Link to={`/friend/${user?.id}`}>{user?.name}</Link>
           </span>
         )}
+        <span>&nbsp;{comment.body}</span>
         <span>&nbsp;</span>
         <span>[{comment?.date?.toLocaleString()}]</span>
       </div>
