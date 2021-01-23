@@ -4,14 +4,14 @@ import { User } from '../../user/user.types';
 import { ApplicationStore } from '../../../store/store';
 import { userCommands } from '../../user/user.commands';
 import { useParams } from 'react-router-dom';
-import { friendWallCommands } from '../friend-wall.commands';
 import { Post } from '../../post/post.types';
 import { RnPost } from '../../post/components/post.component';
+import { postCommands } from '../../post/post.commands';
 
 const LIMIT = 5;
 
 export const RnFriendWall: FC = () => {
-  const { id: idString } = useParams();
+  const { id: idString } = useParams<any>();
   const userId = idString && parseInt(idString);
 
   const user = useSelector<ApplicationStore, User>((state) => {
@@ -42,7 +42,7 @@ export const RnFriendWall: FC = () => {
         () => setLoadingUser(false),
         () => setError(true)
       );
-      friendWallCommands.loadUserPosts(userId, page, LIMIT).then(
+      postCommands.loadUserPosts(userId, page, LIMIT).then(
         () => setLoadingPosts(false),
         () => setError(true)
       );

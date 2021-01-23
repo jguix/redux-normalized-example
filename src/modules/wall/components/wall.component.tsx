@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { ApplicationStore } from '../../../store/store';
 import { Post } from '../../post/post.types';
 import { RnPost } from '../../post/components/post.component';
-import { wallCommands } from '../wall.commands';
+import { postCommands } from '../../post/post.commands';
 
 const LIMIT = 5;
 
@@ -26,7 +26,7 @@ export const RnWall: FC = () => {
 
   useEffect(() => {
     setLoading(true);
-    wallCommands.loadPosts(page, LIMIT).then(
+    postCommands.loadPosts(page, LIMIT).then(
       () => setLoading(false),
       () => setError(true)
     );
