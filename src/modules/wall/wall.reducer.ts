@@ -13,8 +13,7 @@ export const postIdsReducer = (state: number[] = [], action: AnyAction) => {
   switch (action.type) {
     case WallActionTypes.LOAD_POSTS:
       const { payload } = action as LoadWallPostsAction;
-      const { posts } = payload;
-      const postIds = posts.map((post) => post.id);
+      const { postIds } = payload;
       return [...state, ...postIds];
   }
 

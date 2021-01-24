@@ -3,10 +3,10 @@ import { store } from '../../store/store';
 import { userActions } from './user.actions';
 import { OrderType } from '../shared/shared.types';
 
-const loadUser = (userId: number, invalidateCache: boolean = false): Promise<void> => {
+const loadUser = (userId: number, invalidateCache: boolean = false): Promise<number> => {
   return new Promise((resolve, reject) => {
     if (!invalidateCache && isUserDataCached(userId)) {
-      resolve();
+      resolve(getCachedUserId(userId));
     } else {
       userApi.loadUser(userId).then(
         (user) => {
@@ -15,7 +15,7 @@ const loadUser = (userId: number, invalidateCache: boolean = false): Promise<voi
               user,
             })
           );
-          resolve();
+          resolve(user.id);
         },
         (error) => {
           console.log(error);
@@ -34,9 +34,7 @@ const loadUsers = (
 ): Promise<number[]> => {
   return new Promise((resolve, reject) => {
     if (!invalidateCache && isUsersDataCached(page, limit, order)) {
-      const usersQuery = userApi.getUsersQuery(page, limit, order);
-      const cachedUserIds = store.getState().entities.users.cachedUserIds[usersQuery];
-      resolve(cachedUserIds);
+      resolve(getCachedUserIds(page, limit, order));
     } else {
       userApi.loadUsers(page, limit, order).then(
         (users) => {
@@ -65,14 +63,16 @@ const loadUsers = (
   });
 };
 
-const isUsersDataCached = (page: number, limit: number, order: OrderType): boolean => {
+const isUsersDataCached = (page: number, limit: number, order: OrderType): boolean =>
+  getCachedUserIds(page, limit, order) !== undefined;
+
+const isUserDataCached = (userId: number): boolean => getCachedUserId(userId) !== undefined;
+
+const getCachedUserIds = (page: number, limit: number, order: OrderType) => {
   const usersQuery = userApi.getUsersQuery(page, limit, order);
-  const cachedUserIds = store.getState().entities.users.cachedUserIds[usersQuery];
-  return cachedUserIds !== undefined;
+  return store.getState().entities.users.cachedUserIds[usersQuery];
 };
 
-const isUserDataCached = (userId: number): boolean => {
-  return store.getState().entities.users.byId[userId] !== undefined;
-};
+const getCachedUserId = (userId: number) => store.getState().entities.users.byId[userId]?.id;
 
 export const userCommands = { loadUser, loadUsers };

@@ -1,66 +1,27 @@
 import { store } from '../../store/store';
 import { postApi } from '../post/post.api';
 import { postActions } from '../post/post.actions';
-import { friendWallActions } from '../friend-wall/friend-wall.actions';
-import { wallActions } from '../wall/wall.actions';
 
-const loadPosts = (page: number = 1, limit: number = 5, invalidateCache: boolean = false): Promise<void> => {
-  return new Promise((resolve, reject) => {
-    if (!invalidateCache && isDataCached(page, limit)) {
-      resolve();
-    } else {
-      postApi.loadPosts(page, limit).then(
-        (posts) => {
-          store.dispatch(
-            postActions.loadPostsAction({
-              posts,
-            })
-          );
-          store.dispatch(
-            wallActions.loadWallPostsAction({
-              posts,
-            })
-          );
-          resolve();
-        },
-        (error) => {
-          console.log(error);
-          reject();
-        }
-      );
-    }
-  });
-};
-
-const isDataCached = (page: number, limit: number): boolean => {
-  return store.getState().ui.wall.postIds?.length >= page * limit;
-};
-
-const loadUserPosts = (
-  userId: number,
+const loadPosts = (
   page: number = 1,
   limit: number = 5,
+  userId?: number,
   invalidateCache: boolean = false
-): Promise<void> => {
+): Promise<number[]> => {
   return new Promise((resolve, reject) => {
-    if (!invalidateCache && isDataCachedByUser(userId, page, limit)) {
-      resolve();
+    if (!invalidateCache && isPostsDataCached(page, limit, userId)) {
+      resolve(getCachedPostIds(page, limit, userId));
     } else {
-      postApi.loadUserPosts(userId, page, limit).then(
+      postApi.loadPosts(page, limit, userId).then(
         (posts) => {
+          const postIds = posts?.map((post) => post.id) || [];
           store.dispatch(
             postActions.loadPostsAction({
               posts,
               userId,
             })
           );
-          store.dispatch(
-            friendWallActions.loadFriendWallPostsAction({
-              posts,
-              userId,
-            })
-          );
-          resolve();
+          resolve(postIds);
         },
         (error) => {
           console.log(error);
@@ -71,8 +32,12 @@ const loadUserPosts = (
   });
 };
 
-const isDataCachedByUser = (userId: number, page: number, limit: number): boolean => {
-  return store.getState().ui.friendWall.postIdsById[userId]?.length >= page * limit;
+const isPostsDataCached = (page: number, limit: number, userId?: number): boolean =>
+  getCachedPostIds(page, limit, userId) !== undefined;
+
+const getCachedPostIds = (page: number, limit: number, userId?: number) => {
+  const postsQuery = postApi.getPostsQuery(page, limit, userId);
+  return store.getState().entities.posts.cachedPostIds[postsQuery];
 };
 
-export const postCommands = { loadPosts, loadUserPosts };
+export const postCommands = { loadPosts };

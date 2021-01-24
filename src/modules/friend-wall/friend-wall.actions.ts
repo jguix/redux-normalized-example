@@ -5,7 +5,7 @@ export enum FriendWallActionTypes {
 }
 
 export type LoadFriendWallPostsPayload = {
-  posts: Post[];
+  postIds: number[];
   userId: number;
 };
 

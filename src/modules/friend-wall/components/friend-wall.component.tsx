@@ -7,6 +7,8 @@ import { useParams } from 'react-router-dom';
 import { Post } from '../../post/post.types';
 import { RnPost } from '../../post/components/post.component';
 import { postCommands } from '../../post/post.commands';
+import { friendWallCommands } from '../friend-wall.commands';
+import { setSourceMapRange } from 'typescript';
 
 const LIMIT = 5;
 
@@ -19,22 +21,35 @@ export const RnFriendWall: FC = () => {
   });
   const posts = useSelector<ApplicationStore, Post[]>((state) => {
     const postIds = state.ui.friendWall.postIdsById[userId];
-    return postIds?.map((postId) => state.entities.posts.byId[postId]);
+    return postIds?.map((postId) => state.entities.posts.byId[postId]) || [];
   });
-
+  const currentPage = Math.ceil(posts?.length / LIMIT);
   const [isLoadingUser, setLoadingUser] = useState(false);
   const [isLoadingPosts, setLoadingPosts] = useState(false);
   const [isError, setError] = useState(false);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState<number | undefined>(currentPage);
 
   useEffect(() => {
-    const computedPage = Math.ceil(posts?.length / LIMIT) || 1;
-    if (page === 1 && computedPage !== page) {
-      setPage(computedPage);
+    if (userId && posts) {
+      setPage(currentPage);
     }
-  }, [posts, page]);
+  }, [userId]);
 
   useEffect(() => {
+    if (page !== undefined && page === 0) {
+      incrementPage();
+    }
+  }, [page]);
+
+  useEffect(() => {
+    if (page !== undefined && page !== currentPage) {
+      onPageChange();
+    }
+  }, [currentPage, page]);
+
+  const incrementPage = () => page !== undefined && setPage(currentPage + 1);
+
+  const onPageChange = () => {
     if (userId) {
       setLoadingUser(true);
       setLoadingPosts(true);
@@ -42,14 +57,15 @@ export const RnFriendWall: FC = () => {
         () => setLoadingUser(false),
         () => setError(true)
       );
-      postCommands.loadUserPosts(userId, page, LIMIT).then(
-        () => setLoadingPosts(false),
-        () => setError(true)
-      );
+      postCommands
+        .loadPosts(page, LIMIT, userId)
+        .then((postIds) => friendWallCommands.loadPosts(postIds, userId))
+        .then(
+          () => setLoadingPosts(false),
+          () => setError(true)
+        );
     }
-  }, [userId, page]);
-
-  const incrementPage = () => setPage(page + 1);
+  };
 
   if (isError) {
     return <div>Error loading posts, please refresh page.</div>;

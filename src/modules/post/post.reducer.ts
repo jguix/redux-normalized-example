@@ -1,11 +1,13 @@
 import { Post } from './post.types';
-import { PostActionTypes, LoadPostsAction } from './post.actions';
-import { NumberIndexed } from '../shared/shared.types';
+import { PostActionTypes, LoadPostsAction, CachePostsAction } from './post.actions';
+import { NumberIndexed, StringIndexed } from '../shared/shared.types';
 import { AnyAction, combineReducers, Reducer } from 'redux';
 import { CommentActionTypes, LoadCommentsAction } from '../comment/comment.actions';
+import { postApi } from './post.api';
 
 export type PostState = {
   byId: NumberIndexed<Post>;
+  cachedPostIds: StringIndexed<number[]>;
   commentIdsById: NumberIndexed<number[]>; // one-to-many relation
 };
 
@@ -23,6 +25,22 @@ export const postByIdReducer = (state: NumberIndexed<Post> = {}, action: AnyActi
       return {
         ...state,
         ...loadedPostsMap,
+      };
+  }
+
+  return state;
+};
+
+export const cachedPostIdsReducer = (state: StringIndexed<number[]> = {}, action: AnyAction) => {
+  switch (action.type) {
+    case PostActionTypes.CACHE_POSTS:
+      const { payload } = action as CachePostsAction;
+      const { postIds, page, limit, userId } = payload;
+      const postsQuery = postApi.getPostsQuery(page, limit, userId);
+
+      return {
+        ...state,
+        [postsQuery]: postIds,
       };
   }
 
@@ -58,5 +76,6 @@ export const commentIdsByIdReducer = (state: NumberIndexed<number[]> = {}, actio
 
 export const postReducer: Reducer<PostState> = combineReducers({
   byId: postByIdReducer,
+  cachedPostIds: cachedPostIdsReducer,
   commentIdsById: commentIdsByIdReducer,
 });

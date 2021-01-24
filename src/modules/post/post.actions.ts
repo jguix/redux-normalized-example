@@ -1,6 +1,7 @@
 import { Post } from './post.types';
 
 export enum PostActionTypes {
+  CACHE_POSTS = 'CACHE_POSTS',
   LOAD_POSTS = 'LOAD_POSTS',
 }
 
@@ -21,6 +22,26 @@ const loadPostsAction = (payload: LoadPostsPayload): LoadPostsAction => {
   };
 };
 
+export type CachePostsPayload = {
+  postIds: number[];
+  page: number;
+  limit: number;
+  userId?: number;
+};
+
+export type CachePostsAction = {
+  type: PostActionTypes.CACHE_POSTS;
+  payload: CachePostsPayload;
+};
+
+const cacheUsersAction = (payload: CachePostsPayload): CachePostsAction => {
+  return {
+    payload,
+    type: PostActionTypes.CACHE_POSTS,
+  };
+};
+
 export const postActions = {
+  cacheUsersAction,
   loadPostsAction,
 };

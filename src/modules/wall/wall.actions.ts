@@ -5,7 +5,7 @@ export enum WallActionTypes {
 }
 
 export type LoadWallPostsPayload = {
-  posts: Post[];
+  postIds: number[];
 };
 
 export type LoadWallPostsAction = {

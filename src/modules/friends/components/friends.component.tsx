@@ -17,10 +17,10 @@ export const RnFriends: FC = () => {
     const userIds = state.ui.friends.userIds;
     return userIds?.map((userId) => state.entities.users.byId[userId]);
   });
-  const initialPage = Math.ceil(friends?.length / LIMIT);
+  const currentPage = Math.ceil(friends?.length / LIMIT);
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
-  const [page, setPage] = useState(initialPage);
+  const [page, setPage] = useState(currentPage);
 
   useEffect(() => {
     if (page === 0) {
@@ -29,14 +29,12 @@ export const RnFriends: FC = () => {
   }, []);
 
   useEffect(() => {
-    if (page !== initialPage) {
+    if (page !== currentPage) {
       onPageChange();
     }
-  }, [initialPage, page]);
+  }, [currentPage, page]);
 
-  const incrementPage = () => {
-    setPage(page + 1);
-  };
+  const incrementPage = () => setPage(currentPage + 1);
 
   const onPageChange = () => {
     setLoading(true);
