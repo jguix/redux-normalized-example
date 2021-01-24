@@ -1,11 +1,13 @@
 import { User } from './user.types';
-import { UserActionTypes, LoadUsersAction, LoadUserAction } from './user.actions';
-import { NumberIndexed } from '../shared/shared.types';
+import { UserActionTypes, LoadUsersAction, LoadUserAction, CacheUsersAction } from './user.actions';
+import { NumberIndexed, StringIndexed } from '../shared/shared.types';
 import { AnyAction, combineReducers, Reducer } from 'redux';
 import { LoadPostsAction, PostActionTypes } from '../post/post.actions';
+import { userApi } from './user.api';
 
 export type UserState = {
   byId: NumberIndexed<User>;
+  cache: StringIndexed<number[]>;
   postIdsById: NumberIndexed<number[]>; // one-to-many relation
 };
 
@@ -38,25 +40,41 @@ export const userByIdReducer = (state: NumberIndexed<User> = {}, action: AnyActi
   return state;
 };
 
+export const cacheReducer = (state: StringIndexed<number[]> = {}, action: AnyAction) => {
+  switch (action.type) {
+    case UserActionTypes.CACHE_USERS:
+      const { payload } = action as CacheUsersAction;
+      const { userIds, page, limit, order } = payload;
+      const usersQuery = userApi.getUsersQuery(page, limit, order);
+
+      return {
+        ...state,
+        [usersQuery]: userIds,
+      };
+  }
+
+  return state;
+};
+
 export const postIdsByIdReducer = (state: NumberIndexed<number[]> = {}, action: AnyAction) => {
   switch (action.type) {
     case PostActionTypes.LOAD_POSTS:
       const { payload } = action as LoadPostsAction;
       const { posts, userId } = payload;
-      let loadedPostIdsbyUserIdMap = posts.reduce(
+      let loadedPostIdsByUserIdMap = posts.reduce(
         (postIdsbyUserIdMap, post) => ({
           ...postIdsbyUserIdMap,
           [post.userId]: postIdsbyUserIdMap[post.userId] ? [...postIdsbyUserIdMap[post.userId], post.id] : [post.id],
         }),
         {} as NumberIndexed<number[]>
       );
-      if (Object.keys(loadedPostIdsbyUserIdMap).length === 0) {
-        loadedPostIdsbyUserIdMap = { [userId as number]: [] };
+      if (Object.keys(loadedPostIdsByUserIdMap).length === 0) {
+        loadedPostIdsByUserIdMap = { [userId as number]: [] };
       }
 
       return {
         ...state,
-        ...loadedPostIdsbyUserIdMap,
+        ...loadedPostIdsByUserIdMap,
       };
   }
 
@@ -65,5 +83,6 @@ export const postIdsByIdReducer = (state: NumberIndexed<number[]> = {}, action: 
 
 export const userReducer: Reducer<UserState> = combineReducers({
   byId: userByIdReducer,
+  cache: cacheReducer,
   postIdsById: postIdsByIdReducer,
 });

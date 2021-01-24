@@ -7,7 +7,7 @@ export enum FriendsActionTypes {
 }
 
 export type LoadFriendsPayload = {
-  users: User[];
+  userIds: number[];
 };
 
 export type LoadFriendsAction = {

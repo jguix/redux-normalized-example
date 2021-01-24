@@ -9,4 +9,15 @@ const setOrder = (order: OrderType): Promise<void> => {
   });
 };
 
-export const friendsCommands = { setOrder };
+const loadFriends = (userIds: number[]): Promise<void> => {
+  return new Promise((resolve) => {
+    store.dispatch(
+      friendsActions.loadFriendsAction({
+        userIds,
+      })
+    );
+    resolve();
+  });
+};
+
+export const friendsCommands = { loadFriends, setOrder };

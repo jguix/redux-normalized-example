@@ -1,8 +1,10 @@
+import { OrderType } from '../shared/shared.types';
 import { User } from './user.types';
 
 export enum UserActionTypes {
   LOAD_USER = 'LOAD_USER',
   LOAD_USERS = 'LOAD_USERS',
+  CACHE_USERS = 'CACHE_USERS',
 }
 
 export type LoadUserPayload = {
@@ -37,7 +39,27 @@ const loadUsersAction = (payload: LoadUsersPayload): LoadUsersAction => {
   };
 };
 
+export type CacheUsersPayload = {
+  userIds: number[];
+  page: number;
+  limit: number;
+  order: OrderType;
+};
+
+export type CacheUsersAction = {
+  type: UserActionTypes.CACHE_USERS;
+  payload: CacheUsersPayload;
+};
+
+const cacheUsersAction = (payload: CacheUsersPayload): CacheUsersAction => {
+  return {
+    payload,
+    type: UserActionTypes.CACHE_USERS,
+  };
+};
+
 export const userActions = {
+  cacheUsersAction,
   loadUserAction,
   loadUsersAction,
 };

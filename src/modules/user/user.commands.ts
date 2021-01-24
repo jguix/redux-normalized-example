@@ -32,24 +32,30 @@ const loadUsers = (
   limit: number = 5,
   order: OrderType = 'asc',
   invalidateCache: boolean = false
-): Promise<void> => {
+): Promise<number[]> => {
   return new Promise((resolve, reject) => {
     if (!invalidateCache && isUsersDataCached(page, limit, order)) {
-      resolve();
+      const usersQuery = userApi.getUsersQuery(page, limit, order);
+      const cachedUserIds = store.getState().entities.users.cache[usersQuery];
+      resolve(cachedUserIds);
     } else {
       userApi.loadUsers(page, limit, order).then(
         (users) => {
+          const userIds = users.map((user) => user.id);
           store.dispatch(
             userActions.loadUsersAction({
               users,
             })
           );
           store.dispatch(
-            friendsActions.loadFriendsAction({
-              users,
+            userActions.cacheUsersAction({
+              userIds,
+              page,
+              limit,
+              order,
             })
           );
-          resolve();
+          resolve(userIds);
         },
         (error) => {
           console.log(error);
@@ -61,12 +67,9 @@ const loadUsers = (
 };
 
 const isUsersDataCached = (page: number, limit: number, order: OrderType): boolean => {
-  // if (order === 'asc') {
-  //   return store.getState().ui.friends.userIdsByOrderAsc.length >= page * limit;
-  // } else {
-  //   return store.getState().ui.friends.userIdsByOrderDesc.length >= page * limit;
-  // }
-  return false;
+  const usersQuery = userApi.getUsersQuery(page, limit, order);
+  const cachedUserIds = store.getState().entities.users.cache[usersQuery];
+  return cachedUserIds !== undefined;
 };
 
 const isUserDataCached = (userId: number): boolean => {

@@ -40,10 +40,13 @@ export const RnFriends: FC = () => {
 
   const onPageChange = () => {
     setLoading(true);
-    userCommands.loadUsers(page, LIMIT, order).then(
-      () => setLoading(false),
-      () => setError(true)
-    );
+    userCommands
+      .loadUsers(page, LIMIT, order)
+      .then((userIds) => friendsCommands.loadFriends(userIds))
+      .then(
+        () => setLoading(false),
+        () => setError(true)
+      );
   };
 
   const onOrderChange = (event: ChangeEvent<HTMLSelectElement>) => {

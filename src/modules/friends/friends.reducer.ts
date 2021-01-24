@@ -25,8 +25,7 @@ export const userIdsReducer = (state: number[] = [], action: AnyAction) => {
   switch (action.type) {
     case FriendsActionTypes.LOAD_FRIENDS:
       const { payload } = action as LoadFriendsAction;
-      const { users } = payload;
-      const userIds = users.map((user) => user.id);
+      const { userIds } = payload;
       return [...state, ...userIds];
 
     case FriendsActionTypes.SET_FRIENDS_ORDER:
