@@ -5,6 +5,7 @@ import { ApplicationStore } from '../../../store/store';
 import { Link } from 'react-router-dom';
 import { OrderType } from '../../shared/shared.types';
 import { friendsCommands } from '../friends.commands';
+import { userCommands } from '../../user/user.commands';
 
 const LIMIT = 5;
 
@@ -13,34 +14,42 @@ export const RnFriends: FC = () => {
     return state.ui.friends.orderFilter;
   });
   const friends = useSelector<ApplicationStore, User[]>((state) => {
-    const userIds = order === 'asc' ? state.ui.friends.userIdsByOrderAsc : state.ui.friends.userIdsByOrderDesc;
+    const userIds = state.ui.friends.userIds;
     return userIds?.map((userId) => state.entities.users.byId[userId]);
   });
+  const initialPage = Math.ceil(friends?.length / LIMIT);
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(initialPage);
 
   useEffect(() => {
-    const computedPage = Math.ceil(friends?.length / LIMIT) || 1;
-    if (computedPage !== page) {
-      setPage(computedPage);
+    if (page === 0) {
+      incrementPage();
     }
-  }, [friends, order, page]);
+  }, []);
 
   useEffect(() => {
+    if (page !== initialPage) {
+      onPageChange();
+    }
+  }, [initialPage, page]);
+
+  const incrementPage = () => {
+    setPage(page + 1);
+  };
+
+  const onPageChange = () => {
     setLoading(true);
-    friendsCommands.loadFriends(page, LIMIT, order).then(
+    userCommands.loadUsers(page, LIMIT, order).then(
       () => setLoading(false),
       () => setError(true)
     );
-  }, [order, page]);
+  };
 
   const onOrderChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setPage(1);
     friendsCommands.setOrder(event.target.value as OrderType);
   };
-
-  const incrementPage = () => setPage(page + 1);
 
   if (isLoading) {
     return <div>Loading friends...</div>;

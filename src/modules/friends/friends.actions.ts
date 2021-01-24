@@ -8,7 +8,6 @@ export enum FriendsActionTypes {
 
 export type LoadFriendsPayload = {
   users: User[];
-  order: OrderType;
 };
 
 export type LoadFriendsAction = {
