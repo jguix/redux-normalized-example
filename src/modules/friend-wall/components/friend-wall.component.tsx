@@ -8,7 +8,6 @@ import { Post } from '../../post/post.types';
 import { RnPost } from '../../post/components/post.component';
 import { postCommands } from '../../post/post.commands';
 import { friendWallCommands } from '../friend-wall.commands';
-import { setSourceMapRange } from 'typescript';
 
 const LIMIT = 5;
 
@@ -30,8 +29,12 @@ export const RnFriendWall: FC = () => {
   const [page, setPage] = useState<number | undefined>(currentPage);
 
   useEffect(() => {
-    if (userId && posts) {
-      setPage(currentPage);
+    if (userId) {
+      setLoadingUser(true);
+      userCommands.loadUser(userId).then(
+        () => setLoadingUser(false),
+        () => setError(true)
+      );
     }
   }, [userId]);
 
@@ -47,16 +50,11 @@ export const RnFriendWall: FC = () => {
     }
   }, [currentPage, page]);
 
-  const incrementPage = () => page !== undefined && setPage(currentPage + 1);
+  const incrementPage = () => currentPage !== undefined && setPage(currentPage + 1);
 
   const onPageChange = () => {
     if (userId) {
-      setLoadingUser(true);
       setLoadingPosts(true);
-      userCommands.loadUser(userId).then(
-        () => setLoadingUser(false),
-        () => setError(true)
-      );
       postCommands
         .loadPosts(page, LIMIT, userId)
         .then((postIds) => friendWallCommands.loadPosts(postIds, userId))
