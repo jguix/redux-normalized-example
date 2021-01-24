@@ -2,9 +2,9 @@ import { OrderType } from '../shared/shared.types';
 import { User } from './user.types';
 
 export enum UserActionTypes {
-  LOAD_USER = 'LOAD_USER',
-  LOAD_USERS = 'LOAD_USERS',
-  CACHE_USERS = 'CACHE_USERS',
+  CACHE_USERS = 'USER:CACHE_USERS',
+  LOAD_USER = 'USER:LOAD_USER',
+  LOAD_USERS = 'USER:LOAD_USERS',
 }
 
 export type LoadUserPayload = {

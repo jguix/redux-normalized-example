@@ -1,8 +1,8 @@
 import { Post } from './post.types';
 
 export enum PostActionTypes {
-  CACHE_POSTS = 'CACHE_POSTS',
-  LOAD_POSTS = 'LOAD_POSTS',
+  CACHE_POSTS = 'POST:CACHE_POSTS',
+  LOAD_POSTS = 'POST:LOAD_POSTS',
 }
 
 export type LoadPostsPayload = {

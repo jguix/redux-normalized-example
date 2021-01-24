@@ -1,8 +1,8 @@
 import { Comment } from './comment.types';
 
 export enum CommentActionTypes {
-  CACHE_COMMENTS = 'CACHE_COMMENTS',
-  LOAD_COMMENTS = 'LOAD_COMMENTS',
+  CACHE_COMMENTS = 'COMMENT:CACHE_COMMENTS',
+  LOAD_COMMENTS = 'COMMENT:LOAD_COMMENTS',
 }
 
 export type LoadCommentsPayload = {
