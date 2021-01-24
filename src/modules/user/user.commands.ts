@@ -2,7 +2,6 @@ import { userApi } from './user.api';
 import { store } from '../../store/store';
 import { userActions } from './user.actions';
 import { OrderType } from '../shared/shared.types';
-import { friendsActions } from '../friends/friends.actions';
 
 const loadUser = (userId: number, invalidateCache: boolean = false): Promise<void> => {
   return new Promise((resolve, reject) => {
@@ -36,7 +35,7 @@ const loadUsers = (
   return new Promise((resolve, reject) => {
     if (!invalidateCache && isUsersDataCached(page, limit, order)) {
       const usersQuery = userApi.getUsersQuery(page, limit, order);
-      const cachedUserIds = store.getState().entities.users.cache[usersQuery];
+      const cachedUserIds = store.getState().entities.users.cachedUserIds[usersQuery];
       resolve(cachedUserIds);
     } else {
       userApi.loadUsers(page, limit, order).then(
@@ -68,7 +67,7 @@ const loadUsers = (
 
 const isUsersDataCached = (page: number, limit: number, order: OrderType): boolean => {
   const usersQuery = userApi.getUsersQuery(page, limit, order);
-  const cachedUserIds = store.getState().entities.users.cache[usersQuery];
+  const cachedUserIds = store.getState().entities.users.cachedUserIds[usersQuery];
   return cachedUserIds !== undefined;
 };
 

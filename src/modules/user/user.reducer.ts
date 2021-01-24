@@ -7,7 +7,7 @@ import { userApi } from './user.api';
 
 export type UserState = {
   byId: NumberIndexed<User>;
-  cache: StringIndexed<number[]>;
+  cachedUserIds: StringIndexed<number[]>;
   postIdsById: NumberIndexed<number[]>; // one-to-many relation
 };
 
@@ -40,7 +40,7 @@ export const userByIdReducer = (state: NumberIndexed<User> = {}, action: AnyActi
   return state;
 };
 
-export const cacheReducer = (state: StringIndexed<number[]> = {}, action: AnyAction) => {
+export const cachedUserIdsReducer = (state: StringIndexed<number[]> = {}, action: AnyAction) => {
   switch (action.type) {
     case UserActionTypes.CACHE_USERS:
       const { payload } = action as CacheUsersAction;
@@ -83,6 +83,6 @@ export const postIdsByIdReducer = (state: NumberIndexed<number[]> = {}, action: 
 
 export const userReducer: Reducer<UserState> = combineReducers({
   byId: userByIdReducer,
-  cache: cacheReducer,
+  cachedUserIds: cachedUserIdsReducer,
   postIdsById: postIdsByIdReducer,
 });

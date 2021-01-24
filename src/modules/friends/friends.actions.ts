@@ -1,4 +1,3 @@
-import { User } from '../user/user.types';
 import { OrderType } from '../shared/shared.types';
 
 export enum FriendsActionTypes {
