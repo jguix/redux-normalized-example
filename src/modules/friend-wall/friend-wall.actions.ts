@@ -1,5 +1,3 @@
-import { Post } from '../post/post.types';
-
 export enum FriendWallActionTypes {
   LOAD_POSTS = 'FRIEND_WALL:LOAD_POSTS',
 }

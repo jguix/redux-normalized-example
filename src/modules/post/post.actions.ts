@@ -34,7 +34,7 @@ export type CachePostsAction = {
   payload: CachePostsPayload;
 };
 
-const cacheUsersAction = (payload: CachePostsPayload): CachePostsAction => {
+const cachePostsAction = (payload: CachePostsPayload): CachePostsAction => {
   return {
     payload,
     type: PostActionTypes.CACHE_POSTS,
@@ -42,6 +42,6 @@ const cacheUsersAction = (payload: CachePostsPayload): CachePostsAction => {
 };
 
 export const postActions = {
-  cacheUsersAction,
+  cachePostsAction,
   loadPostsAction,
 };

@@ -1,11 +1,9 @@
 import { Comment } from './comment.types';
 
-const loadComments = (): Promise<Comment[]> => {
-  return fetch(`/comments`).then((response) => response.json());
+const loadComments = (postId: number): Promise<Comment[]> => {
+  return fetch(`/comments${getCommentsQuery(postId)}`).then((response) => response.json());
 };
 
-const loadPostComments = (postId: number): Promise<Comment[]> => {
-  return fetch(`/comments?postId=${postId}`).then((response) => response.json());
-};
+const getCommentsQuery = (postId?: number) => `${postId ? `?postId=${postId}` : ''}`;
 
-export const commentApi = { loadComments, loadPostComments };
+export const commentApi = { getCommentsQuery, loadComments };

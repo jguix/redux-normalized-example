@@ -1,5 +1,3 @@
-import { Post } from '../post/post.types';
-
 export enum WallActionTypes {
   LOAD_POSTS = 'WALL:LOAD_POSTS',
 }

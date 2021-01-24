@@ -21,6 +21,14 @@ const loadPosts = (
               userId,
             })
           );
+          store.dispatch(
+            postActions.cachePostsAction({
+              postIds,
+              page,
+              limit,
+              userId,
+            })
+          );
           resolve(postIds);
         },
         (error) => {

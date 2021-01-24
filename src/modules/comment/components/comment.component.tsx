@@ -5,6 +5,7 @@ import { ApplicationStore } from '../../../store/store';
 import { User } from '../../user/user.types';
 import { userCommands } from '../../user/user.commands';
 import { Link } from 'react-router-dom';
+import { postCommands } from '../../post/post.commands';
 
 type Props = {
   comment: Comment;

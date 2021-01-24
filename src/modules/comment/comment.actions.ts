@@ -1,6 +1,7 @@
 import { Comment } from './comment.types';
 
 export enum CommentActionTypes {
+  CACHE_COMMENTS = 'CACHE_COMMENTS',
   LOAD_COMMENTS = 'LOAD_COMMENTS',
 }
 
@@ -21,6 +22,24 @@ const loadCommentsAction = (payload: LoadCommentsPayload): LoadCommentsAction =>
   };
 };
 
+export type CacheCommentsPayload = {
+  commentIds: number[];
+  postId?: number;
+};
+
+export type CacheCommentsAction = {
+  type: CommentActionTypes.CACHE_COMMENTS;
+  payload: CacheCommentsPayload;
+};
+
+const cacheCommentsAction = (payload: CacheCommentsPayload): CacheCommentsAction => {
+  return {
+    payload,
+    type: CommentActionTypes.CACHE_COMMENTS,
+  };
+};
+
 export const commentActions = {
+  cacheCommentsAction,
   loadCommentsAction,
 };
