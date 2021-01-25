@@ -1,14 +1,12 @@
-import { User } from '../user/user.types';
 import { OrderType } from '../shared/shared.types';
 
 export enum FriendsActionTypes {
-  LOAD_FRIENDS = 'LOAD_FRIENDS',
-  SET_FRIENDS_ORDER = 'SET_FRIENDS_ORDER',
+  LOAD_FRIENDS = 'FRIENDS:LOAD_FRIENDS',
+  SET_FRIENDS_ORDER = 'FRIENDS:SET_FRIENDS_ORDER',
 }
 
 export type LoadFriendsPayload = {
-  users: User[];
-  order: OrderType;
+  userIds: number[];
 };
 
 export type LoadFriendsAction = {

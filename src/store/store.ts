@@ -1,11 +1,11 @@
-import { combineReducers, Reducer } from 'redux';
+import { combineReducers, createStore, Reducer } from 'redux';
 import { userReducer, UserStore } from '../modules/user/user.reducer';
 import { commentReducer, CommentStore } from '../modules/comment/comment.reducer';
 import { postReducer, PostStore } from '../modules/post/post.reducer';
-import { createStore } from 'redux';
 import { friendsReducer, FriendsStore } from '../modules/friends/friends.reducer';
 import { FriendWallStore, friendWallReducer } from '../modules/friend-wall/friend-wall.reducer';
 import { wallReducer, WallStore } from '../modules/wall/wall.reducer';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 export type EntitiesStore = CommentStore & PostStore & UserStore;
 
@@ -33,4 +33,4 @@ export const rootReducer: Reducer<ApplicationStore> = combineReducers({
   ui: uiReducer,
 });
 
-export const store = createStore(rootReducer);
+export const store = createStore(rootReducer, composeWithDevTools());

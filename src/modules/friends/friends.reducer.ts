@@ -3,8 +3,7 @@ import { FriendsActionTypes, LoadFriendsAction, SetFriendsOrderAction } from './
 
 export type FriendsState = {
   orderFilter: 'asc' | 'desc';
-  userIdsByOrderAsc: number[];
-  userIdsByOrderDesc: number[];
+  userIds: number[];
 };
 
 export type FriendsStore = {
@@ -22,31 +21,15 @@ export const orderFilterReducer = (state: 'asc' | 'desc' = 'asc', action: AnyAct
   return state;
 };
 
-export const userIdsByOrderAscReducer = (state: number[] = [], action: AnyAction) => {
+export const userIdsReducer = (state: number[] = [], action: AnyAction) => {
   switch (action.type) {
     case FriendsActionTypes.LOAD_FRIENDS:
       const { payload } = action as LoadFriendsAction;
-      const { users, order } = payload;
-      if (order === 'asc') {
-        const userIds = users.map((user) => user.id);
-        return [...state, ...userIds];
-      }
-      return state;
-  }
+      const { userIds } = payload;
+      return [...state, ...userIds];
 
-  return state;
-};
-
-export const userIdsByOrderDescReducer = (state: number[] = [], action: AnyAction) => {
-  switch (action.type) {
-    case FriendsActionTypes.LOAD_FRIENDS:
-      const { payload } = action as LoadFriendsAction;
-      const { users, order } = payload;
-      if (order === 'desc') {
-        const userIds = users.map((user) => user.id);
-        return [...state, ...userIds];
-      }
-      return state;
+    case FriendsActionTypes.SET_FRIENDS_ORDER:
+      return [];
   }
 
   return state;
@@ -54,6 +37,5 @@ export const userIdsByOrderDescReducer = (state: number[] = [], action: AnyActio
 
 export const friendsReducer: Reducer<FriendsState> = combineReducers({
   orderFilter: orderFilterReducer,
-  userIdsByOrderAsc: userIdsByOrderAscReducer,
-  userIdsByOrderDesc: userIdsByOrderDescReducer,
+  userIds: userIdsReducer,
 });

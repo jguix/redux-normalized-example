@@ -1,7 +1,7 @@
 import { Post } from './post.types';
 
 export enum PostActionTypes {
-  LOAD_POSTS = 'LOAD_POSTS',
+  LOAD_POSTS = 'POST:LOAD_POSTS',
 }
 
 export type LoadPostsPayload = {

@@ -56,20 +56,19 @@ const App = () => {
   console.log('Loading friends');
   store.dispatch(
     friendsActions.loadFriendsAction({
-      users: [users[1], users[2]],
-      order: 'asc',
+      userIds: [2, 3],
     })
   );
   console.log('Loading wall posts');
   store.dispatch(
     wallActions.loadWallPostsAction({
-      posts,
+      postIds: [1, 2, 3, 4, 5],
     })
   );
   console.log("Loading Emily's posts");
   store.dispatch(
     friendWallActions.loadFriendWallPostsAction({
-      posts: [posts[2], posts[3]],
+      postIds: [3, 4],
       userId: 2,
     })
   );

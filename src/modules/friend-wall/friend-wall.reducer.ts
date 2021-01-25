@@ -14,12 +14,11 @@ export const postIdsByIdReducer = (state: NumberIndexed<number[]> = {}, action: 
   switch (action.type) {
     case FriendWallActionTypes.LOAD_POSTS:
       const { payload } = action as LoadFriendWallPostsAction;
-      const { posts, userId } = payload;
-      let loadedPostIds = posts?.map((post) => post.id) || [];
+      const { postIds, userId } = payload;
 
       return {
         ...state,
-        [userId]: state[userId] ? [...state[userId], ...loadedPostIds] : [...loadedPostIds],
+        [userId]: state[userId] ? [...state[userId], ...postIds] : [...postIds],
       };
   }
 

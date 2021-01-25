@@ -43,20 +43,20 @@ export const postIdsByIdReducer = (state: NumberIndexed<number[]> = {}, action: 
     case PostActionTypes.LOAD_POSTS:
       const { payload } = action as LoadPostsAction;
       const { posts, userId } = payload;
-      let loadedPostIdsbyUserIdMap = posts.reduce(
-        (postIdsbyUserIdMap, post) => ({
-          ...postIdsbyUserIdMap,
-          [post.userId]: postIdsbyUserIdMap[post.userId] ? [...postIdsbyUserIdMap[post.userId], post.id] : [post.id],
+      let loadedPostIdsByUserIdMap = posts.reduce(
+        (postIdsByUserIdMap, post) => ({
+          ...postIdsByUserIdMap,
+          [post.userId]: postIdsByUserIdMap[post.userId] ? [...postIdsByUserIdMap[post.userId], post.id] : [post.id],
         }),
         {} as NumberIndexed<number[]>
       );
-      if (Object.keys(loadedPostIdsbyUserIdMap).length === 0) {
-        loadedPostIdsbyUserIdMap = { [userId as number]: [] };
+      if (posts.length === 0) {
+        loadedPostIdsByUserIdMap = { [userId as number]: [] };
       }
 
       return {
         ...state,
-        ...loadedPostIdsbyUserIdMap,
+        ...loadedPostIdsByUserIdMap,
       };
   }
 

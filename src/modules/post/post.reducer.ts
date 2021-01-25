@@ -34,22 +34,22 @@ export const commentIdsByIdReducer = (state: NumberIndexed<number[]> = {}, actio
     case CommentActionTypes.LOAD_COMMENTS:
       const { payload } = action as LoadCommentsAction;
       const { comments, postId } = payload;
-      let loadedCommentIdsbyPostIdMap = comments.reduce(
-        (commentIdsbyPostIdMap, comment) => ({
-          ...commentIdsbyPostIdMap,
-          [comment.postId]: commentIdsbyPostIdMap[comment.postId]
-            ? [...commentIdsbyPostIdMap[comment.postId], comment.id]
+      let loadedCommentIdsByPostIdMap = comments.reduce(
+        (commentIdsByPostIdMap, comment) => ({
+          ...commentIdsByPostIdMap,
+          [comment.postId]: commentIdsByPostIdMap[comment.postId]
+            ? [...commentIdsByPostIdMap[comment.postId], comment.id]
             : [comment.id],
         }),
         {} as NumberIndexed<number[]>
       );
-      if (Object.keys(loadedCommentIdsbyPostIdMap).length === 0) {
-        loadedCommentIdsbyPostIdMap = { [postId as number]: [] };
+      if (comments.length === 0) {
+        loadedCommentIdsByPostIdMap = { [postId as number]: [] };
       }
 
       return {
         ...state,
-        ...loadedCommentIdsbyPostIdMap,
+        ...loadedCommentIdsByPostIdMap,
       };
   }
 
