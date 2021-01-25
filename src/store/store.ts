@@ -1,4 +1,4 @@
-import { applyMiddleware, combineReducers, createStore, Reducer } from 'redux';
+import { combineReducers, createStore, Reducer } from 'redux';
 import { userReducer, UserStore } from '../modules/user/user.reducer';
 import { commentReducer, CommentStore } from '../modules/comment/comment.reducer';
 import { postReducer, PostStore } from '../modules/post/post.reducer';

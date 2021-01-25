@@ -68,7 +68,7 @@ export const postIdsByIdReducer = (state: NumberIndexed<number[]> = {}, action: 
         }),
         {} as NumberIndexed<number[]>
       );
-      if (Object.keys(loadedPostIdsByUserIdMap).length === 0) {
+      if (posts.length === 0) {
         loadedPostIdsByUserIdMap = { [userId as number]: [] };
       }
 

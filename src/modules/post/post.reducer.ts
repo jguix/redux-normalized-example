@@ -61,7 +61,7 @@ export const commentIdsByIdReducer = (state: NumberIndexed<number[]> = {}, actio
         }),
         {} as NumberIndexed<number[]>
       );
-      if (Object.keys(loadedCommentIdsbyPostIdMap).length === 0) {
+      if (comments.length === 0) {
         loadedCommentIdsbyPostIdMap = { [postId as number]: [] };
       }
 
