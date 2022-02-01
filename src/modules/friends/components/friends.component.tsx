@@ -52,15 +52,11 @@ export const RnFriends: FC = () => {
     friendsCommands.setOrder(event.target.value as OrderType);
   };
 
-  if (isLoading) {
-    return <div>Loading friends...</div>;
-  }
-
   if (isError) {
     return <div>Error loading friends, please refresh page.</div>;
   }
 
-  return friends ? (
+  return (
     <>
       <h1>My Friends</h1>
       {friends?.length > 0 && (
@@ -80,6 +76,7 @@ export const RnFriends: FC = () => {
           <div>{friend.name}</div>
         </Link>
       ))}
+      {isLoading && <div>Loading friends...</div>}
       {friends?.length > 0 && (
         <div>
           <hr />
@@ -87,7 +84,5 @@ export const RnFriends: FC = () => {
         </div>
       )}
     </>
-  ) : (
-    <></>
   );
 };
